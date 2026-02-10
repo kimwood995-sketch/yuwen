@@ -1,0 +1,794 @@
+语文词汇
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>趣味语文生字词学习站</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Comic Sans MS', 'Microsoft YaHei', sans-serif;
+        }
+        
+        :root {
+            --primary: #FF9E6D;
+            --secondary: #6DC2FF;
+            --accent: #FF6DB5;
+            --light: #FFF9E6;
+            --dark: #4A4A7D;
+            --correct: #8BFF8B;
+            --wrong: #FF8B8B;
+        }
+        
+        body {
+            background-color: var(--light);
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ff9e6d' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+            color: var(--dark);
+            min-height: 100vh;
+            padding-bottom: 50px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 20px;
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            border: 8px solid var(--primary);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-decoration {
+            position: absolute;
+            top: -30px;
+            right: -30px;
+            width: 120px;
+            height: 120px;
+            background-color: var(--accent);
+            border-radius: 50%;
+            z-index: 0;
+        }
+        
+        .header-decoration:nth-child(2) {
+            top: auto;
+            bottom: -40px;
+            left: -40px;
+            background-color: var(--secondary);
+            width: 100px;
+            height: 100px;
+        }
+        
+        h1 {
+            color: var(--dark);
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+            text-shadow: 3px 3px 0 var(--primary);
+        }
+        
+        .subtitle {
+            font-size: 1.3rem;
+            color: var(--secondary);
+            font-weight: bold;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .game-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .game-card {
+            flex: 1;
+            min-width: 300px;
+            background-color: white;
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            border: 6px solid var(--secondary);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .game-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 15px;
+            background: linear-gradient(to right, var(--primary), var(--accent), var(--secondary));
+        }
+        
+        .grade-selector {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+            justify-content: center;
+        }
+        
+        .grade-btn {
+            padding: 12px 20px;
+            background-color: white;
+            border: 3px solid var(--primary);
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: var(--dark);
+        }
+        
+        .grade-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .grade-btn.active {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .question-area {
+            background-color: #f9f9ff;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+            border: 3px dashed var(--accent);
+            text-align: center;
+            min-height: 180px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .question-text {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: var(--dark);
+            font-weight: bold;
+        }
+        
+        .word-display {
+            font-size: 2.5rem;
+            color: var(--accent);
+            font-weight: bold;
+            text-shadow: 2px 2px 0 #FFE0E0;
+            margin: 10px 0;
+        }
+        
+        .pinyin {
+            font-size: 1.3rem;
+            color: var(--secondary);
+            margin-bottom: 5px;
+        }
+        
+        .options-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .option-btn {
+            padding: 15px;
+            border: none;
+            border-radius: 15px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            background-color: white;
+            border: 3px solid var(--secondary);
+            color: var(--dark);
+        }
+        
+        .option-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .option-btn.correct {
+            background-color: var(--correct);
+            border-color: #4CAF50;
+        }
+        
+        .option-btn.wrong {
+            background-color: var(--wrong);
+            border-color: #F44336;
+        }
+        
+        .explanation-box {
+            background-color: #E8F4FF;
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 20px;
+            border-left: 6px solid var(--secondary);
+            display: none;
+        }
+        
+        .explanation-title {
+            color: var(--secondary);
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .explanation-text {
+            font-size: 1.1rem;
+            line-height: 1.5;
+        }
+        
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        
+        .control-btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .next-btn {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .hint-btn {
+            background-color: var(--secondary);
+            color: white;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+        
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: white;
+            border-radius: 15px;
+            min-width: 100px;
+            border: 3px solid var(--accent);
+        }
+        
+        .stat-value {
+            font-size: 1.8rem;
+            color: var(--accent);
+        }
+        
+        .character {
+            font-size: 3rem;
+            position: absolute;
+            opacity: 0.1;
+            z-index: 0;
+        }
+        
+        .char1 { top: 20px; left: 20px; color: var(--primary); }
+        .char2 { bottom: 20px; right: 20px; color: var(--secondary); }
+        .char3 { top: 50%; left: 10px; color: var(--accent); }
+        
+        .cartoon {
+            position: absolute;
+            font-size: 4rem;
+            opacity: 0.1;
+            z-index: 0;
+        }
+        
+        .cartoon1 { bottom: 10px; left: 10px; }
+        .cartoon2 { top: 10px; right: 10px; }
+        
+        .instructions {
+            background-color: white;
+            border-radius: 20px;
+            padding: 20px;
+            margin-top: 30px;
+            border: 6px solid var(--accent);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .instructions h3 {
+            color: var(--accent);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+        
+        .instructions ol {
+            padding-left: 20px;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+        
+        .instructions li {
+            margin-bottom: 10px;
+        }
+        
+        @media (max-width: 768px) {
+            .options-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .game-card {
+                min-width: 100%;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+        }
+        
+        .score-animation {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 4rem;
+            font-weight: bold;
+            z-index: 100;
+            pointer-events: none;
+            opacity: 0;
+            animation: scorePop 1s ease-out;
+        }
+        
+        @keyframes scorePop {
+            0% { transform: translate(-50%, -50%) scale(0.5); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: translate(-50%, -50%) scale(1.5); opacity: 0; }
+        }
+        
+        .progress-bar {
+            height: 12px;
+            background-color: #e0e0e0;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+        
+        .progress {
+            height: 100%;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            width: 0%;
+            transition: width 0.5s;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-decoration"></div>
+            <div class="header-decoration"></div>
+            <h1><i class="fas fa-book-open"></i> 趣味语文生字词学习站</h1>
+            <div class="subtitle">人教版初中语文生字词快速记忆游戏</div>
+        </header>
+        
+        <div class="game-container">
+            <div class="game-card">
+                <div class="character char1">字</div>
+                <div class="character char2">词</div>
+                <div class="cartoon cartoon1"><i class="fas fa-pencil-alt"></i></div>
+                
+                <h2><i class="fas fa-gamepad"></i> 生字词问答游戏</h2>
+                <p style="margin: 15px 0; color: var(--dark);">选择年级，然后回答关于生字词拼音的问题！</p>
+                
+                <div class="grade-selector">
+                    <button class="grade-btn active" data-grade="7-1">七年级上册</button>
+                    <button class="grade-btn" data-grade="7-2">七年级下册</button>
+                    <button class="grade-btn" data-grade="8-1">八年级上册</button>
+                    <button class="grade-btn" data-grade="8-2">八年级下册</button>
+                    <button class="grade-btn" data-grade="9-1">九年级上册</button>
+                    <button class="grade-btn" data-grade="9-2">九年级下册</button>
+                </div>
+                
+                <div class="progress-bar">
+                    <div class="progress" id="progress"></div>
+                </div>
+                
+                <div class="question-area" id="questionArea">
+                    <div class="question-text" id="questionText">准备好开始学习了吗？</div>
+                    <div class="word-display" id="wordDisplay">选择年级开始游戏</div>
+                    <div class="pinyin" id="pinyinDisplay"></div>
+                </div>
+                
+                <div class="options-container" id="optionsContainer">
+                    <!-- 选项将通过JavaScript动态生成 -->
+                </div>
+                
+                <div class="explanation-box" id="explanationBox">
+                    <div class="explanation-title"><i class="fas fa-lightbulb"></i> 词语解释</div>
+                    <div class="explanation-text" id="explanationText"></div>
+                </div>
+                
+                <div class="controls">
+                    <button class="control-btn hint-btn" id="hintBtn">
+                        <i class="fas fa-lightbulb"></i> 提示
+                    </button>
+                    <button class="control-btn next-btn" id="nextBtn">
+                        下一题 <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+                
+                <div class="stats">
+                    <div class="stat-item">
+                        <div>得分</div>
+                        <div class="stat-value" id="score">0</div>
+                    </div>
+                    <div class="stat-item">
+                        <div>进度</div>
+                        <div class="stat-value" id="progressText">0/10</div>
+                    </div>
+                    <div class="stat-item">
+                        <div>正确率</div>
+                        <div class="stat-value" id="accuracy">0%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="instructions">
+            <h3><i class="fas fa-info-circle"></i> 游戏说明</h3>
+            <ol>
+                <li>首先选择你想要学习的年级（七年级上册到九年级下册）。</li>
+                <li>系统会显示一个生字词和它的拼音，你需要从四个选项中选择正确的解释。</li>
+                <li>选择答案后，系统会立即告诉你是否正确，并显示该词语的详细解释。</li>
+                <li>点击"下一题"继续学习新的生字词。</li>
+                <li>你可以使用"提示"按钮获得帮助，但使用提示会减少得分。</li>
+                <li>完成10题为一轮，看看你能得多少分！</li>
+            </ol>
+        </div>
+    </div>
+    
+    <div id="scoreAnimation"></div>
+    
+    <script>
+        // 生字词数据 - 简化版本（实际应用中可以更完整）
+        const wordData = {
+            "7-1": [
+                {word: "分歧", pinyin: "qí", correct: "不一致，有差别", options: ["整齐", "不一致，有差别", "特殊", "相同"], explanation: "分歧：指意见、主张等不一致，有差别。"},
+                {word: "憔悴", pinyin: "qiáo cuì", correct: "形容人瘦弱，面色不好看", options: ["美丽", "强壮", "形容人瘦弱，面色不好看", "高兴"], explanation: "憔悴：形容人瘦弱，面色不好看。通常指因生病、劳累或忧愁而显得消瘦、脸色难看。"},
+                {word: "酝酿", pinyin: "yùn niàng", correct: "造酒的发酵过程，比喻做准备工作", options: ["立即行动", "造酒的发酵过程，比喻做准备工作", "快速完成", "放弃"], explanation: "酝酿：原指造酒的发酵过程，比喻做准备工作，如事先考虑、商量、准备等。"},
+                {word: "贮蓄", pinyin: "zhù xù", correct: "储存，积蓄", options: ["花费", "储存，积蓄", "借贷", "捐赠"], explanation: "贮蓄：储存，积蓄。指把东西存起来，积累起来。"},
+                {word: "伫立", pinyin: "zhù", correct: "长时间地站着", options: ["坐下", "行走", "长时间地站着", "躺下"], explanation: "伫立：长时间地站着。多用于形容人长时间站立不动。"},
+                {word: "痴想", pinyin: "chī", correct: "发呆地想，幻想", options: ["认真思考", "发呆地想，幻想", "快速决定", "讨论"], explanation: "痴想：发呆地想，幻想。指不切实际、沉迷于某种想法。"},
+                {word: "骸骨", pinyin: "hái", correct: "尸骨，骨头", options: ["肌肉", "皮肤", "血液", "尸骨，骨头"], explanation: "骸骨：尸骨，骨头。多指人的尸骨。"},
+                {word: "峰峦", pinyin: "luán", correct: "山峰和山峦", options: ["河流", "平原", "山峰和山峦", "海洋"], explanation: "峰峦：山峰和山峦。指连绵的山峰。"},
+                {word: "征兆", pinyin: "zhào", correct: "预兆，先兆", options: ["结果", "原因", "预兆，先兆", "过程"], explanation: "征兆：预兆，先兆。指事情发生前显露出来的迹象。"},
+                {word: "静谧", pinyin: "mì", correct: "安静，宁静", options: ["吵闹", "混乱", "忙碌", "安静，宁静"], explanation: "静谧：安静，宁静。形容环境非常安静。"}
+            ],
+            "7-2": [
+                {word: "菜畦", pinyin: "qí", correct: "菜园里划分的小区", options: ["菜市场", "菜园里划分的小区", "厨房", "仓库"], explanation: "菜畦：菜园里划分的小区，用于种植蔬菜。"},
+                {word: "肿胀", pinyin: "zhànɡ", correct: "肌肉、皮肤等因发炎或充血而体积增大", options: ["缩小", "肌肉、皮肤等因发炎或充血而体积增大", "变硬", "变软"], explanation: "肿胀：肌肉、皮肤等因发炎或充血而体积增大。"},
+                {word: "嫉妒", pinyin: "jí dù", correct: "因别人比自己好而心怀怨恨", options: ["羡慕", "欣赏", "因别人比自己好而心怀怨恨", "帮助"], explanation: "嫉妒：因别人比自己好而心怀怨恨。"},
+                {word: "祈祷", pinyin: "qí dǎo", correct: "向神祝告求福", options: ["命令", "批评", "向神祝告求福", "感谢"], explanation: "祈祷：向神祝告求福。宗教仪式之一。"},
+                {word: "炽痛", pinyin: "chì", correct: "热烈而深切地痛苦", options: ["轻微疼痛", "热烈而深切地痛苦", "麻木", "痒"], explanation: "炽痛：热烈而深切地痛苦。"},
+                {word: "斑斓", pinyin: "lán", correct: "色彩错杂灿烂的样子", options: ["单调", "灰暗", "色彩错杂灿烂的样子", "透明"], explanation: "斑斓：色彩错杂灿烂的样子。"}
+            ],
+            "8-1": [
+                {word: "琐屑", pinyin: "suǒ xiè", correct: "细小而繁多的事", options: ["重要事情", "困难任务", "细小而繁多的事", "有趣活动"], explanation: "琐屑：细小而繁多的事。"},
+                {word: "取缔", pinyin: "dì", correct: "明令取消或禁止", options: ["支持", "明令取消或禁止", "推广", "建立"], explanation: "取缔：明令取消或禁止。"},
+                {word: "萌发", pinyin: "ménɡ", correct: "种子或孢子发芽，比喻事物发生", options: ["消失", "种子或孢子发芽，比喻事物发生", "结束", "成熟"], explanation: "萌发：种子或孢子发芽，比喻事物发生。"},
+                {word: "追溯", pinyin: "sù", correct: "逆流而上，向江河发源处走，比喻探索事物的由来", options: ["忘记", "顺流而下", "逆流而上，向江河发源处走，比喻探索事物的由来", "停止"], explanation: "追溯：逆流而上，向江河发源处走，比喻探索事物的由来。"}
+            ],
+            "8-2": [
+                {word: "奥秘", pinyin: "ào mì", correct: "深奥神秘", options: ["简单明了", "公开透明", "深奥神秘", "无聊乏味"], explanation: "奥秘：深奥神秘。"},
+                {word: "犀利", pinyin: "xī", correct: "锋利，锐利，形容语言、文笔等尖锐", options: ["迟钝", "模糊", "锋利，锐利，形容语言、文笔等尖锐", "柔和"], explanation: "犀利：锋利，锐利，形容语言、文笔等尖锐。"},
+                {word: "执拗", pinyin: "zhí niù", correct: "固执任性，不听别人意见", options: ["顺从", "灵活", "固执任性，不听别人意见", "犹豫"], explanation: "执拗：固执任性，不听别人意见。"},
+                {word: "挑衅", pinyin: "tiǎo xìn", correct: "借端生事，企图引起冲突或战争", options: ["和解", "帮助", "借端生事，企图引起冲突或战争", "躲避"], explanation: "挑衅：借端生事，企图引起冲突或战争。"}
+            ],
+            "9-1": [
+                {word: "商酌", pinyin: "zhuó", correct: "商量斟酌", options: ["独自决定", "忽视", "商量斟酌", "争吵"], explanation: "商酌：商量斟酌。"},
+                {word: "吹毛求疵", pinyin: "cī", correct: "故意挑剔毛病，寻找差错", options: ["表扬优点", "故意挑剔毛病，寻找差错", "全面接受", "快速通过"], explanation: "吹毛求疵：故意挑剔毛病，寻找差错。"}
+            ],
+            "9-2": [
+                {word: "慰藉", pinyin: "jiè", correct: "安慰", options: ["打击", "嘲笑", "安慰", "忽视"], explanation: "慰藉：安慰。"},
+                {word: "骸骨", pinyin: "hái", correct: "尸骨，骨头", options: ["肌肉", "皮肤", "尸骨，骨头", "血液"], explanation: "骸骨：尸骨，骨头。"},
+                {word: "攫取", pinyin: "jué", correct: "掠夺，夺取", options: ["给予", "分享", "掠夺，夺取", "保护"], explanation: "攫取：掠夺，夺取。"},
+                {word: "豁免", pinyin: "huò", correct: "免除", options: ["增加", "免除", "惩罚", "要求"], explanation: "豁免：免除。"}
+            ]
+        };
+
+        // 游戏状态
+        let currentGrade = "7-1";
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let totalQuestions = 10;
+        let correctCount = 0;
+        let currentQuestions = [];
+        let answered = false;
+        
+        // DOM元素
+        const questionText = document.getElementById('questionText');
+        const wordDisplay = document.getElementById('wordDisplay');
+        const pinyinDisplay = document.getElementById('pinyinDisplay');
+        const optionsContainer = document.getElementById('optionsContainer');
+        const explanationBox = document.getElementById('explanationBox');
+        const explanationText = document.getElementById('explanationText');
+        const scoreElement = document.getElementById('score');
+        const progressText = document.getElementById('progressText');
+        const accuracyElement = document.getElementById('accuracy');
+        const progressBar = document.getElementById('progress');
+        const nextBtn = document.getElementById('nextBtn');
+        const hintBtn = document.getElementById('hintBtn');
+        const gradeButtons = document.querySelectorAll('.grade-btn');
+        
+        // 初始化游戏
+        function initGame() {
+            // 重置游戏状态
+            currentQuestionIndex = 0;
+            score = 0;
+            correctCount = 0;
+            answered = false;
+            
+            // 更新显示
+            scoreElement.textContent = score;
+            updateProgress();
+            
+            // 为当前年级选择题目
+            selectQuestions();
+            
+            // 显示第一题
+            showQuestion();
+            
+            // 隐藏解释框
+            explanationBox.style.display = 'none';
+            
+            // 更新进度条
+            updateProgressBar();
+        }
+        
+        // 为当前年级选择题目
+        function selectQuestions() {
+            const gradeWords = wordData[currentGrade];
+            // 随机选择10个题目（如果题目不足10个，则使用所有题目）
+            const count = Math.min(totalQuestions, gradeWords.length);
+            currentQuestions = [...gradeWords].sort(() => 0.5 - Math.random()).slice(0, count);
+        }
+        
+        // 显示当前题目
+        function showQuestion() {
+            if (currentQuestionIndex >= currentQuestions.length) {
+                // 所有题目已完成，重新开始
+                endGame();
+                return;
+            }
+            
+            const question = currentQuestions[currentQuestionIndex];
+            answered = false;
+            
+            // 更新问题文本
+            questionText.textContent = `这个词语的正确意思是？`;
+            wordDisplay.textContent = question.word;
+            pinyinDisplay.textContent = `拼音：${question.pinyin}`;
+            
+            // 清空选项容器
+            optionsContainer.innerHTML = '';
+            
+            // 随机排序选项
+            const shuffledOptions = [...question.options].sort(() => 0.5 - Math.random());
+            
+            // 创建选项按钮
+            shuffledOptions.forEach(option => {
+                const button = document.createElement('button');
+                button.className = 'option-btn';
+                button.textContent = option;
+                button.addEventListener('click', () => checkAnswer(option, question.correct, button));
+                optionsContainer.appendChild(button);
+            });
+            
+            // 更新进度文本
+            updateProgress();
+            
+            // 隐藏解释框
+            explanationBox.style.display = 'none';
+            
+            // 启用提示按钮
+            hintBtn.disabled = false;
+            hintBtn.style.opacity = '1';
+        }
+        
+        // 检查答案
+        function checkAnswer(selected, correct, button) {
+            if (answered) return;
+            answered = true;
+            
+            // 禁用所有选项按钮
+            const allButtons = document.querySelectorAll('.option-btn');
+            allButtons.forEach(btn => {
+                btn.disabled = true;
+                // 标记正确答案
+                if (btn.textContent === correct) {
+                    btn.classList.add('correct');
+                }
+            });
+            
+            // 标记用户选择的答案
+            if (selected === correct) {
+                button.classList.add('correct');
+                score += 10;
+                correctCount++;
+                showScoreAnimation('+10', '#4CAF50');
+            } else {
+                button.classList.add('wrong');
+                showScoreAnimation('答案错误', '#F44336');
+            }
+            
+            // 更新分数
+            scoreElement.textContent = score;
+            
+            // 显示解释
+            explanationText.textContent = currentQuestions[currentQuestionIndex].explanation;
+            explanationBox.style.display = 'block';
+            
+            // 更新准确率
+            updateAccuracy();
+            
+            // 更新进度条
+            updateProgressBar();
+            
+            // 禁用提示按钮
+            hintBtn.disabled = true;
+            hintBtn.style.opacity = '0.5';
+        }
+        
+        // 显示得分动画
+        function showScoreAnimation(text, color) {
+            const animation = document.createElement('div');
+            animation.className = 'score-animation';
+            animation.textContent = text;
+            animation.style.color = color;
+            document.getElementById('scoreAnimation').appendChild(animation);
+            
+            // 动画结束后移除元素
+            setTimeout(() => {
+                animation.remove();
+            }, 1000);
+        }
+        
+        // 更新进度
+        function updateProgress() {
+            progressText.textContent = `${currentQuestionIndex + 1}/${currentQuestions.length}`;
+        }
+        
+        // 更新进度条
+        function updateProgressBar() {
+            const progressPercent = ((currentQuestionIndex + 1) / currentQuestions.length) * 100;
+            progressBar.style.width = `${progressPercent}%`;
+        }
+        
+        // 更新准确率
+        function updateAccuracy() {
+            const accuracy = currentQuestionIndex > 0 ? Math.round((correctCount / (currentQuestionIndex + 1)) * 100) : 0;
+            accuracyElement.textContent = `${accuracy}%`;
+        }
+        
+        // 结束游戏
+        function endGame() {
+            questionText.textContent = "游戏结束！";
+            wordDisplay.textContent = `你的得分：${score}`;
+            pinyinDisplay.textContent = `正确率：${Math.round((correctCount / currentQuestions.length) * 100)}%`;
+            optionsContainer.innerHTML = '';
+            explanationBox.style.display = 'none';
+            
+            // 显示结果信息
+            const resultMessage = document.createElement('div');
+            resultMessage.style.textAlign = 'center';
+            resultMessage.style.marginTop = '20px';
+            resultMessage.style.fontSize = '1.2rem';
+            
+            let message = '';
+            if (score >= 80) {
+                message = '太棒了！你是语文小天才！';
+            } else if (score >= 60) {
+                message = '不错！继续加油！';
+            } else {
+                message = '还需要多练习哦！';
+            }
+            
+            resultMessage.innerHTML = `
+                <p style="color: var(--accent); font-weight: bold;">${message}</p>
+                <p>答对了 ${correctCount} 题，共 ${currentQuestions.length} 题</p>
+                <button id="restartBtn" style="margin-top: 15px; padding: 10px 20px; background-color: var(--primary); color: white; border: none; border-radius: 50px; font-size: 1rem; cursor: pointer;">
+                    <i class="fas fa-redo"></i> 重新开始
+                </button>
+            `;
+            
+            optionsContainer.appendChild(resultMessage);
+            
+            // 添加重新开始按钮的事件监听
+            document.getElementById('restartBtn').addEventListener('click', initGame);
+        }
+        
+        // 提示功能
+        hintBtn.addEventListener('click', function() {
+            if (answered || currentQuestionIndex >= currentQuestions.length) return;
+            
+            // 使用提示扣5分
+            score = Math.max(0, score - 5);
+            scoreElement.textContent = score;
+            showScoreAnimation('-5', '#FF9800');
+            
+            // 禁用提示按钮
+            hintBtn.disabled = true;
+            hintBtn.style.opacity = '0.5';
+            
+            // 高亮显示两个错误选项
+            const question = currentQuestions[currentQuestionIndex];
+            const allButtons = document.querySelectorAll('.option-btn');
+            let wrongOptionsHighlighted = 0;
+            
+            allButtons.forEach(btn => {
+                if (btn.textContent !== question.correct && wrongOptionsHighlighted < 2) {
+                    btn.style.opacity = '0.5';
+                    btn.style.textDecoration = 'line-through';
+                    wrongOptionsHighlighted++;
+                }
+            });
+        });
+        
+        // 下一题功能
+        nextBtn.addEventListener('click', function() {
+            if (!answered && currentQuestionIndex < currentQuestions.length) {
+                alert('请先回答当前问题！');
+                return;
+            }
+            
+            currentQuestionIndex++;
+            if (currentQuestionIndex < currentQuestions.length) {
+                showQuestion();
+            } else {
+                endGame();
+            }
+        });
+        
+        // 年级选择功能
+        gradeButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // 更新活动按钮
+                gradeButtons.forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+                
+                // 更新当前年级
+                currentGrade = this.getAttribute('data-grade');
+                
+                // 重新初始化游戏
+                initGame();
+            });
+        });
+        
+        // 初始化游戏
+        initGame();
+    </script>
+</body>
+</html>
